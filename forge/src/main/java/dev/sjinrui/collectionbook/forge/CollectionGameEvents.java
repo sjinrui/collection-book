@@ -23,18 +23,6 @@ public class CollectionGameEvents {
 
     private static long tickCounter = 0;
 
-    /** 拾取物品 -> 物品收集。 */
-    @SubscribeEvent
-    public void onItemPickup(PlayerEvent.ItemPickupEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) {
-            ItemStack stack = event.getStack();
-            ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
-            if (id != null) {
-                CollectionServerData.record(player, CollectionCategory.ITEM, id.toString());
-            }
-        }
-    }
-
     /** 击杀生物 -> 生物收集。 */
     @SubscribeEvent
     public void onLivingDeath(LivingDeathEvent event) {
@@ -61,16 +49,15 @@ public class CollectionGameEvents {
         }
     }
 
-    /** 玩家定时检测所在生物群系。 */
+    /** 玩家定时：每 20 tick 扫描背包（物品）与所在生物群系。 */
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         if (!(event.player instanceof ServerPlayer player)) return;
         tickCounter++;
         if (tickCounter % 20 != 0) return;
-        var biomeHolder = player.level().getBiome(player.blockPosition());
-        biomeHolder.unwrapKey().ifPresent(key ->
-                CollectionServerData.record(player, CollectionCategory.BIOME, key.location().toString()));
+        dev.sjinrui.collectionbook.common.server.CollectionScanner.scanInventory(player);
+        dev.sjinrui.collectionbook.common.server.CollectionScanner.scanBiome(player);
     }
 
     /** 登录：载入并同步。 */
