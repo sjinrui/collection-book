@@ -1,0 +1,33 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="collection_book"
+version="${mod_version}"
+displayName="收集书 Collection Book"
+authors="sjinrui"
+description='''
+通用事件驱动的收集书，自动记录物品、生物、食物与生物群系的收集进度，可在任意整合包使用。
+'''
+
+[[dependencies.collection_book]]
+    modId="forge"
+    type="required"
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.collection_book]]
+    modId="minecraft"
+    type="required"
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.collection_book]]
+    modId="architectury"
+    type="required"
+    versionRange="[9.2,)"
+    ordering="NONE"
+    side="BOTH"
