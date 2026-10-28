@@ -1,0 +1,20 @@
+{
+  "itemGroup.collection_book": "Collection Book",
+  "item.collection_book:collection_book": "Collection Book",
+  "collection_book.title": "Collection Book",
+  "collection_book.tab.item": "Items",
+  "collection_book.tab.mob": "Mobs",
+  "collection_book.tab.food": "Foods",
+  "collection_book.tab.biome": "Biomes",
+  "collection_book.sort.default": "Default",
+  "collection_book.sort.newest": "Newest",
+  "collection_book.sort.oldest": "Oldest",
+  "collection_book.sort.btn": "Sort: {0}",
+  "collection_book.filter.all": "All",
+  "collection_book.filter.collected": "Collected",
+  "collection_book.filter.uncollected": "Missing",
+  "collection_book.filter.btn": "View: {0}",
+  "collection_book.ack": "New: {0}",
+  "key.collection_book": "Open Collection Book",
+  "category.collection_book": "Collection Book"
+}

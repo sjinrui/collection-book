@@ -1,0 +1,20 @@
+{
+  "itemGroup.collection_book": "收集书",
+  "item.collection_book:collection_book": "收集书",
+  "collection_book.title": "收集书",
+  "collection_book.tab.item": "物品",
+  "collection_book.tab.mob": "生物",
+  "collection_book.tab.food": "食物",
+  "collection_book.tab.biome": "生物群系",
+  "collection_book.sort.default": "默认",
+  "collection_book.sort.newest": "最新在前",
+  "collection_book.sort.oldest": "最早在前",
+  "collection_book.sort.btn": "排序：{0}",
+  "collection_book.filter.all": "全部",
+  "collection_book.filter.collected": "已收集",
+  "collection_book.filter.uncollected": "未收集",
+  "collection_book.filter.btn": "视图：{0}",
+  "collection_book.ack": "新：{0}",
+  "key.collection_book": "打开收集书",
+  "category.collection_book": "收集书"
+}
