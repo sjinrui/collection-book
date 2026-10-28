@@ -1,0 +1,40 @@
+architectury {
+    common(rootProject.enabled_platforms.split(","))
+}
+
+dependencies {
+    // 仅为使用 fabric @Environment / @ExpectPlatform 注解，不要使用其加载器实现类
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modApi "dev.architectury:architectury:${rootProject.architectury_version}"
+}
+
+// 纹理以 Base64 文本形式入库（避免在源码仓库中提交二进制文件），构建时解码生成 PNG。
+def generatedResources = layout.buildDirectory.dir("generated/resources")
+sourceSets.main.resources.srcDir(generatedResources)
+
+tasks.register("generateTexture") {
+    def b64 = file("src/main/resources/assets/collection_book/textures/item/collection_book.png.b64")
+    def out = generatedResources.map { it.file("assets/collection_book/textures/item/collection_book.png") }
+    inputs.file(b64)
+    outputs.file(out)
+    doLast {
+        def bytes = Base64.getDecoder().decode(b64.getText("UTF-8").trim())
+        out.get().asFile.bytes = bytes
+    }
+}
+
+tasks.named("processResources") { dependsOn("generateTexture") }
+tasks.named("sourcesJar") { dependsOn("generateTexture") }
+
+
+publishing {
+    publications {
+        mavenCommon(MavenPublication) {
+            artifactId = rootProject.archives_base_name
+            from components.java
+        }
+    }
+
+    repositories {
+    }
+}
